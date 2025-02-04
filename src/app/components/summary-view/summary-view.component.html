@@ -1,28 +1,25 @@
-<ng-container *ngIf="totalIncome>0 || totalExpenses>0; else noRecords">
-    <div class="card mb-4 text-center p-3">
-        <div class="card-body">
-            <h5 class="card-title mb-4">Summary</h5>
-            <p>Total Income: {{ totalIncome | currency:"₹"}}</p>
-            <p>Total Expenses: {{ totalExpenses | currency:"₹"}}</p>
-            <p>Balance: {{ balance | currency:"₹" }}</p>
-        </div>
+<ng-container *ngIf="totalIncome > 0 || totalExpenses > 0; else noRecords">
+  <div class="card mb-4 text-center p-3 summary-card fadeInLeft">
 
-        
-        <a class="btn btn-primary mx-auto" routerLink="/manage-transactions">Add Expenses</a>
-
+      <div class="card-body">
+        <h1 class="card-title mb-4">Summary</h1>
+        <p class="summary-text">Total Income: {{ totalIncome | currency:"₹" }}</p>
+        <p class="summary-text">Total Expenses: {{ totalExpenses | currency:"₹" }}</p>
+        <p class="summary-text">Balance: {{ balance | currency:"₹" }}</p>
+      </div>
+      <a class="btn btn-primary mx-auto add-expense-btn" routerLink="/manage-transactions">Add Expenses</a>
     </div>
-</ng-container>
-<ng-template #noRecords>
-    <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="../../../assets/br3.jpg" alt="" width="90" >
-        <h1 class="display-5 fw-bold">Finance Tracker</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">Built with Angular, to manage your income and expenses efficiently.</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a type="button" class="btn btn-primary btn-lg px-4 gap-3" routerLink="/manage-transactions">Add
-                    Expenses</a>
-            </div>
+  </ng-container>
+  
+  <ng-template #noRecords>
+    <div class="px-4 py-5 my-5 text-center no-records" @fadeIn>
+      <img class="d-block mx-auto mb-4" src="../../../assets/br3.jpg" alt="" width="90">
+      <h1 class="display-5 fw-bold">Finance Tracker</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Built with Angular, to manage your income and expenses efficiently.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <a type="button" class="btn btn-primary btn-lg px-4 gap-3" routerLink="/manage-transactions">Add Expenses</a>
         </div>
+      </div>
     </div>
-
-</ng-template>
+  </ng-template>

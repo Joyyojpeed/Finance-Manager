@@ -1,66 +1,175 @@
+<!-- transaction-management.component.html -->
 <div class="container">
   <div class="row justify-content-between">
-    <div class="col-lg-5 col-12 p-3">
+    <!-- Form Container -->
+    <div class="col-lg-5 col-12 p-3 transaction-form-container fade-left">
       <div class="card mb-4">
-        <div class="card-body">
+        <div class="card-body" @fadeInLeft>
+          <h1 class="card-title mb-4">{{ transactionToEdit ? 'Edit Transaction' : 'Add Transaction' }}</h1>
           <form [formGroup]="transactionForm" (ngSubmit)="saveTransaction()">
             <div class="mb-3">
               <label for="description" class="form-label">Description</label>
-              <input type="text" id="description" class="form-control" formControlName="description">
+              <input
+                type="text"
+                id="description"
+                class="form-control"
+                formControlName="description"
+                placeholder="Enter description"
+              />
             </div>
             <div class="mb-3">
               <label for="amount" class="form-label">Amount</label>
-              <input type="number" id="amount" class="form-control" formControlName="amount">
+              <input
+                type="number"
+                id="amount"
+                class="form-control"
+                formControlName="amount"
+                placeholder="Amount"
+              />
             </div>
             <div class="mb-3">
               <label for="date" class="form-label">Date</label>
-              <input type="date" id="date" class="form-control" formControlName="date">
+              <input
+                type="date"
+                id="date"
+                class="form-control"
+                formControlName="date"
+              />
             </div>
             <div class="mb-3">
               <label class="form-label">Type</label>
               <div class="form-check">
-                <input class="form-check-input" type="radio" id="income" formControlName="type" value="income">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="income"
+                  formControlName="type"
+                  value="income"
+                />
                 <label class="form-check-label" for="income">Income</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" id="expense" formControlName="type" value="expense">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="expense"
+                  formControlName="type"
+                  value="expense"
+                />
                 <label class="form-check-label" for="expense">Expense</label>
               </div>
             </div>
             <div class="mb-3">
               <label for="category" class="form-label">Category</label>
-              <select id="category" class="form-control" formControlName="category">
-                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+              <select
+                id="category"
+                class="form-control"
+                formControlName="category"
+              >
+                <option *ngFor="let category of categories" [value]="category">
+                  {{ category }}
+                </option>
               </select>
             </div>
-            <p class="text-danger">{{error}}</p>
+            <p class="text-danger">{{ error }}</p>
             <button type="submit" class="btn btn-primary">
-              {{ transactionToEdit ? 'Save Changes' : 'Add Transaction' }}
+              {{ transactionToEdit ? "Save Changes" : "Add Transaction" }}
             </button>
           </form>
         </div>
       </div>
-
     </div>
-    <div class="col-lg-6 col-12 p-3" *ngIf="transactions.length>0 && !transactionToEdit">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="card-title">Recent Transactions</h5>
-          <ul class="list-group">
-            <li *ngFor="let transaction of transactions"
-              class="list-group-item d-flex justify-content-between align-items-center">
-              <span>{{ transaction.description }}</span>
-              <small> {{transaction.category }}</small>
-              <small> {{ transaction.type | uppercase }}</small>
-              <small> {{ transaction.date }}</small>
 
-              <span>
-                {{ transaction.amount | currency:"₹"}}
-                <button class="btn btn-secondary btn-sm ms-3" (click)="startEditTransaction(transaction)">Edit</button>
-                <button class="btn btn-danger btn-sm ms-3" (click)="deleteTransaction(transaction.id)">Delete</button>
-              </span>
-            </li>
-          </ul>
+    <!-- List Container -->
+    <div class="col-lg-7 col-12 p-3 fade-right" id="ListContainer">
+      <div class="card mb-4" id="Inside-List">
+        <div class="card-body">
+          <h1 class="card-title">Recent Transactions</h1>
+
+          <!-- Search and Date Filters -->
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search transactions..."
+              [(ngModel)]="searchQuery"
+              (input)="applyFilters()"
+            />
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="startDate" class="form-label">Start Date</label>
+              <input
+                type="date"
+                id="startDate"
+                class="form-control"
+                [(ngModel)]="startDate"
+                (change)="applyFilters()"
+              />
+            </div>
+            <div class="col">
+              <label for="endDate" class="form-label">End Date</label>
+              <input
+                type="date"
+                id="endDate"
+                class="form-control"
+                [(ngModel)]="endDate"
+                (change)="applyFilters()"
+              />
+            </div>
+          </div>
+
+          <!-- Transaction List with Pagination Animation -->
+          <div [@pageTransition]="currentPage">
+            <ul class="list-group" *ngIf="!loading"> <!-- Hide list when loading -->
+              <li
+                *ngFor="let transaction of paginatedTransactions"
+                class="list-group-item d-flex justify-content-between align-items-center"
+                @fadeIn
+              >
+                <span>{{ transaction.description }}</span>
+                <small>{{ transaction.category }}</small>
+                <small>{{ transaction.type | uppercase }}</small>
+                <small>{{ transaction.date }}</small>
+
+                <span>
+                  {{ transaction.amount | currency : "₹" }}
+                  <button
+                    class="btn btn-secondary btn-sm ms-3"
+                    (click)="startEditTransaction(transaction)"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    class="btn btn-danger btn-sm ms-3"
+                    (click)="deleteTransaction(transaction.id)"
+                  >
+                    Delete
+                  </button>
+                </span>
+              </li>
+            </ul>
+            <div *ngIf="loading" class="skeleton-loader"></div>
+          </div>
+
+          <!-- Pagination Controls -->
+          <div class="card-footer d-flex justify-content-between">
+            <button
+              class="btn btn-link"
+              [disabled]="currentPage === 1"
+              (click)="prevPage()"
+            >
+              Previous
+            </button>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <button
+              class="btn btn-link"
+              [disabled]="currentPage === totalPages"
+              (click)="nextPage()"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

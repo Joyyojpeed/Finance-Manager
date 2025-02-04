@@ -1,0 +1,247 @@
+/* Modern Color Scheme for the Whole Body */
+body {
+  background: linear-gradient(135deg, #1e1e2f, #2a2a40); /* Gradient background */
+  color: #ffffff; /* White text for contrast */
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Full height */
+}
+
+/* Container for the Page */
+.container {
+  padding: 20px;
+  max-width: 1200px; /* Limit width for better readability */
+  margin: 0 auto; /* Center the container */
+}
+
+
+/* Transaction Form Container */
+.transaction-form-container {
+  background: rgba(30, 30, 30, 0.9); /* Darker tone with transparency */
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px); /* Blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05); /* Light shadow for lifted effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Sticky position */
+  top: 20px; /* Distance from top */
+
+  &:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.321); /* Deeper shadow on hover */
+  }
+}
+
+/* Input Fields Styling */
+.form-control {
+  background: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Padding */
+  color: #ffffff; /* White text for input fields */
+  transition: all 0.3s ease; /* Smooth transition */
+
+  &:focus {
+    border-color: #007bff; /* Focus border color */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Focus shadow */
+    background: rgba(255, 255, 255, 0.2); /* Slightly lighter background on focus */
+  }
+}
+
+
+select.form-control {
+  background: rgba(40, 40, 40, 0.9); /* Dark background for dropdown */
+  color: #ffffff; /* White text for dropdown */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Padding */
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none; /* Remove default arrow for Safari */
+  -moz-appearance: none; /* Remove default arrow for Firefox */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Position of the arrow */
+  background-size: 12px; /* Size of the arrow */
+}
+
+
+select.form-control option {
+  background: rgba(40, 40, 40, 0.9); /* Dark background for options */
+  color: #ffffff; /* White text for options */
+}
+/* Labels for Input Fields */
+.form-label {
+  color: #ffffff; /* White text for labels */
+  font-weight: 500; /* Medium weight */
+  margin-bottom: 8px; /* Space below label */
+}
+
+/* Radio Buttons Styling */
+.form-check-input {
+  margin-right: 8px; /* Space between radio button and label */
+}
+
+.form-check-label {
+  color: #ffffff; /* White text for radio labels */
+}
+
+/* Transaction List Container */
+#Inside-List {
+  background: rgba(40, 40, 40, 0.9); /* Slightly transparent white */
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px); /* Blur effect */
+  border: 1px solid rgba(135, 130, 130, 0.2); /* Subtle border */
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.05);  /* Soft shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px); /* Lift effect on hover */
+    box-shadow: 0 8px 25px rgba(126, 124, 124, 0.321); /* Deeper shadow on hover */
+  }
+}
+
+/* Recent Transactions Title */
+#Inside-List h5 {
+  color: #ffffff; /* Dark text for title */
+  font-weight: 600; /* Bold weight */
+  margin-bottom: 20px; /* Space below title */
+}
+
+/* List Items Styling */
+.list-group-item {
+  background: rgb(152, 151, 151); /* Slightly transparent white */
+  border: 1px solid rgba(255, 254, 254, 0.1); /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px; /* Padding */
+  margin-bottom: 10px; /* Space between items */
+  transition: all 0.3s ease; /* Smooth transition */
+
+  &:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 4px 10px rgba(255, 253, 253, 0.321); /* Shadow on hover */
+    background-color: rgb(255, 255, 255); /* Solid white on hover */
+  }
+}
+
+/* Pagination Buttons Styling */
+.btn-sm {
+  padding: 5px 10px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  
+
+  &:hover {
+    transform: translateY(-1px); /* Subtle hover animation */
+    background-color: #4b3e3e; /* Slightly darker hover effect */
+  }
+}
+
+/* Card Footer Styling */
+.card-footer {
+  background: transparent; /* Transparent background */
+  border-top: 3px solid rgba(255, 248, 248, 0.1); /* Subtle border */
+  padding: 15px; /* Padding */
+}
+
+/* Link Buttons Styling */
+.btn-link {
+  color: #007bff; /* Link color */
+  text-decoration: none; /* Remove underline */
+
+  &:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Slide in from bottom */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Final position */
+  }
+}
+
+.fade-right {
+  animation: fadeIn 0.5s ease-out; /* Fade-in animation */
+}
+
+/* Loading State */
+.skeleton-loader {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); /* Shimmer effect */
+  background-size: 200% 100%; /* Shimmer animation */
+  animation: shimmer 1.5s infinite; /* Infinite animation */
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Dialog Styling */
+.dialog-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333; /* Dark text */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.dialog-content {
+  font-size: 1.1rem;
+  color: #555; /* Dark text */
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cancel-button {
+  background-color: #f0f0f0; /* Light background */
+  color: #333; /* Dark text */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #e0e0e0; /* Light background on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+  }
+}
+
+.delete-button {
+  background-color: #ff4d4d; /* Red background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #ff1a1a; /* Darker red on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+  }
+}
+
+.card {
+  background: rgba(40, 40, 40, 0.9); /* Slightly lighter than the container */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Light shadow for lifted effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15); /* Deeper shadow on hover */
+  }
+}

@@ -1,4 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* Custom Toastr Styles with Animations */
+.toast-success {
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-out 2.5s;
+  }
+  
+  .toast-error {
+    background: linear-gradient(135deg, #f44336, #e57373);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-out 2.5s;
+  }
+  
+  /* Slide-in animation */
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Fade-out animation */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
